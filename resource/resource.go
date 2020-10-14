@@ -1,8 +1,8 @@
 package resource
 
 import (
-	"github.com/bill-rich/screepsgo-stub/common"
-	"github.com/bill-rich/screepsgo-stub/room"
+	"github.com/bill-rich/go-screeps/common"
+	"github.com/bill-rich/go-screeps/room"
 )
 
 // Resource is a dropped piece of resource.

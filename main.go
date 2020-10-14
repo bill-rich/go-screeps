@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bill-rich/screepsgo-stub/game"
+	"github.com/bill-rich/go-screeps/game"
 	"github.com/gopherjs/gopherjs/js"
 )
 

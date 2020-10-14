@@ -3,11 +3,11 @@ package creep
 import (
 	"fmt"
 
-	"github.com/bill-rich/screepsgo-stub/common"
-	"github.com/bill-rich/screepsgo-stub/constructionsite"
-	"github.com/bill-rich/screepsgo-stub/resource"
-	"github.com/bill-rich/screepsgo-stub/room"
-	"github.com/bill-rich/screepsgo-stub/structure"
+	"github.com/bill-rich/go-screeps/common"
+	"github.com/bill-rich/go-screeps/constructionsite"
+	"github.com/bill-rich/go-screeps/resource"
+	"github.com/bill-rich/go-screeps/room"
+	"github.com/bill-rich/go-screeps/structure"
 )
 
 // Creep is an object representing one of your units.

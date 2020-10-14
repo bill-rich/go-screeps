@@ -1,4 +1,4 @@
-module github.com/bill-rich/screepsgo-stub
+module github.com/bill-rich/go-screeps
 
 go 1.11
 

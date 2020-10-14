@@ -1,7 +1,7 @@
 package structure
 
 import (
-	"github.com/bill-rich/screepsgo-stub/common"
+	"github.com/bill-rich/go-screeps/common"
 )
 
 type Structure struct {

@@ -6,7 +6,7 @@ package common
 import (
 	"fmt"
 
-	"github.com/bill-rich/screepsgo-stub/constants"
+	"github.com/bill-rich/go-screeps/constants"
 	"github.com/gopherjs/gopherjs/js"
 )
 

@@ -1,7 +1,7 @@
 package room
 
 import (
-	"github.com/bill-rich/screepsgo-stub/common"
+	"github.com/bill-rich/go-screeps/common"
 	"github.com/gopherjs/gopherjs/js"
 )
 

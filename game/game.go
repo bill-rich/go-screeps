@@ -1,8 +1,8 @@
 package game
 
 import (
-	"github.com/bill-rich/screepsgo-stub/creep"
-	"github.com/bill-rich/screepsgo-stub/room"
+	"github.com/bill-rich/go-screeps/creep"
+	"github.com/bill-rich/go-screeps/room"
 	"github.com/gopherjs/gopherjs/js"
 )
 
