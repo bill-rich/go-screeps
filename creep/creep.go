@@ -9,7 +9,6 @@ import (
 	"github.com/bill-rich/go-screeps/resource"
 	"github.com/bill-rich/go-screeps/room"
 	"github.com/bill-rich/go-screeps/source"
-	"github.com/bill-rich/go-screeps/structure"
 )
 
 // Creep is an object representing one of your units.
@@ -30,6 +29,13 @@ type Creep struct {
 	TicksToLive int          `js:"ticksToLive"`
 }
 
+// StructureInterface is a bit of a hack to get around an import cycle.
+type StructureInterface interface {
+	Destroy() error
+	IsActive() bool
+	NotifyWhenAttacked(common.Enabled) bool
+}
+
 // Attack another creep, power creep, or structure in a short-ranged attack.
 func (c Creep) Attack(target common.AttackTarget) error {
 	return common.ErrT(c.Call("attack", target).Int())
@@ -37,7 +43,7 @@ func (c Creep) Attack(target common.AttackTarget) error {
 
 // AttackController decreases the controller's downgrade timer by 300 ticks per
 // every CLAIM body part.
-func (c Creep) AttackController(target structure.Controller) error {
+func (c Creep) AttackController(target StructureInterface) error {
 	return common.ErrT(c.Call("attackController", target).Int())
 }
 
@@ -52,12 +58,12 @@ func (c Creep) CancelOrder(name string) error {
 }
 
 // ClaimController claims a neutral controller under your control.
-func (c Creep) ClaimController(target structure.Controller) error {
+func (c Creep) ClaimController(target StructureInterface) error {
 	return common.ErrT(c.Call("claimController", target).Int())
 }
 
 // Dismantle dismantles any structure that can be constructed.
-func (c Creep) Dismantle(target structure.Structure) error {
+func (c Creep) Dismantle(target StructureInterface) error {
 	return common.ErrT(c.Call("dismantle", target).Int())
 }
 
@@ -68,7 +74,7 @@ func (c Creep) Drop(resourceType string, amount int) error {
 
 // AddSafeMode adds one more available safe mode activation to a room
 // controller.
-func (c Creep) AddSafeMode(target structure.Controller) error {
+func (c Creep) AddSafeMode(target StructureInterface) error {
 	return common.ErrT(c.Call("addSafeMode", target).Int())
 }
 
@@ -146,7 +152,7 @@ func (c Creep) Repair(target Creep) error {
 
 // ReserveController temporarily block a neutral controller from claiming by
 // other players.
-func (c Creep) ReserveController(target structure.Controller) error {
+func (c Creep) ReserveController(target StructureInterface) error {
 	return common.ErrT(c.Call("reserveController", target).Int())
 }
 
@@ -158,7 +164,7 @@ func (c Creep) Say(comment string) error {
 
 // SignController signs a controller with an arbitrary text visible to all
 // players.
-func (c Creep) SignController(target structure.Controller) error {
+func (c Creep) SignController(target StructureInterface) error {
 	return common.ErrT(c.Call("signController", target).Int())
 }
 
@@ -174,7 +180,7 @@ func (c Creep) Transfer(target common.Storage, resourceType string, amount int) 
 
 // UpgradeController upgrades your controller to the next level using carried
 // energy.
-func (c Creep) UpgradeController(target structure.Controller) error {
+func (c Creep) UpgradeController(target StructureInterface) error {
 	return common.ErrT(c.Call("upgradeController", target).Int())
 }
 

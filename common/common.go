@@ -53,6 +53,15 @@ type Store struct {
 	*js.Object
 }
 
+// PathOp is a step in a path.
+type PathOp struct {
+	X         int `js:"x"`
+	Y         int `js:"y"`
+	Dx        int `js:"dx"`
+	Dy        int `js:"dy"`
+	Direction int `js:"direction"`
+}
+
 // GetCapacity returns capacity of this store for the specified resource. For a
 // general purpose store, it returns total capacity if resource is undefined.
 func (s Store) GetCapacity(resource string) error {

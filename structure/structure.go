@@ -89,9 +89,27 @@ type Nuker struct {
 	Cooldown int          `js:"cooldown"`
 }
 
-// Spawn is the spawn structure
+// Spawn is the spawn structure.
 type Spawn struct {
 	Structure
+}
+
+// Storage is a structure that can store huge amount of resource units.
+type Storage struct {
+	OwnedStructure
+	Store common.Store `js:"store"`
+}
+
+// Terminal sends any resources to a Terminal in another room.
+type Terminal struct {
+	OwnedStructure
+	Store    common.Store `js:"store"`
+	Cooldown int          `js:"cooldown"`
+}
+
+// Send sends resource to a Terminal in another room with the specified name.
+func (t Terminal) Send(resourceType string, amount int, destination string, description string) error {
+	return common.ErrT(t.Call("send", resourceType, amount, destination, description).Int())
 }
 
 // TransferEnergy remotely transfer energy to another link at any location in the same room.
@@ -134,7 +152,7 @@ func (s Structure) Destroy() error {
 	return common.ErrT(s.Call("destroy").Int())
 }
 
-//IsActive checks whether this structure can be used.
+// IsActive checks whether this structure can be used.
 func (s Structure) IsActive() bool {
 	return s.Call("isActive").Bool()
 }
