@@ -161,3 +161,8 @@ func (s Structure) IsActive() bool {
 func (s Structure) NotifyWhenAttacked(enabled common.Enabled) bool {
 	return s.Call("notifyWhenAttacked", enabled).Bool()
 }
+
+// SpawnCreep spawns a creep.
+func (s Spawn) SpawnCreep(body []string, name string) error {
+	return common.ErrT(s.Call("spawnCreep", body, name).Int())
+}

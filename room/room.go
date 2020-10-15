@@ -95,7 +95,7 @@ func (r Room) GetEventLog(raw bool) []Event {
 
 // GetPositionAt creates a RoomPosition object at the specified location.
 func (r Room) GetPositionAt(x, y int) common.RoomPosition {
-	return r.Call("getPositionAt", x, y).Interface().(common.RoomPosition)
+	return common.RoomPosition{Object: r.Call("getPositionAt", x, y)}
 }
 
 // GetTerrain gets a Terrain object which provides fast access to static terrain

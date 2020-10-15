@@ -108,7 +108,7 @@ func (c Creep) MoveByPath(path []common.RoomPosition) error {
 
 // MoveTo finds the optimal path to the target within the same room and move
 // to it.
-func (c Creep) MoveTo(target object.Object) error {
+func (c Creep) MoveTo(target common.RoomPosition) error {
 	return common.ErrT(c.Call("moveTo", target).Int())
 }
 
