@@ -13,5 +13,6 @@ func addTwo() interface{} {
 	game := game.Game{Object: js.Global.Get("game")}
 	creep := game.Creeps["creep1"]
 	enemy := game.Creeps["creep2"]
-	return creep.Attack(enemy)
+	enemy.Say("Homie")
+	return creep.Say("Yo")
 }
