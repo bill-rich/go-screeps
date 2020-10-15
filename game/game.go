@@ -39,12 +39,17 @@ type Shard struct {
 	Ptr  bool   `js:"ptr"`
 }
 
-// Level provides Global Control Level information
+// Level provides Global Control Level information.
 type Level struct {
 	*js.Object
 	Level         int `js:"level"`
 	Progress      int `js:"progress"`
 	ProgressTotal int `js:"progressTotal"`
+}
+
+// GetGame returns the game object.
+func GetGame() Game {
+	return Game{Object: js.Global.Get("game")}
 }
 
 // GetObjectByID gets an object with the specified unique ID.
