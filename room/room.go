@@ -1,25 +1,15 @@
 package room
 
 import (
-	"github.com/bill-rich/go-screeps/common"
 	"github.com/gopherjs/gopherjs/js"
 )
 
+// Room is an object representing the room in which your units and structures are in.
 type Room struct {
 	*js.Object
 	Name string `js:"name"`
 }
 
-func (r Room) find(args ...interface{}) *js.Object {
+func (r Room) Find(args ...interface{}) *js.Object {
 	return r.Call("find", args...)
-}
-
-type Source struct {
-	common.Object
-	Effect              []common.Effect `js:"effects"`
-	Room                Room            `js:"room"`
-	Energy              int             `js:"energy"`
-	EnergyCapacity      int             `js:"energyCapacity"`
-	ID                  string          `js:"id"`
-	TicksToRegeneration int             `js:"ticksToRegeneration"`
 }

@@ -29,12 +29,6 @@ type Effect struct {
 	TicksRemaining int `js:"ticksRemaining"`
 }
 
-// Object is anything that has a 'pos'.
-type Object struct {
-	*js.Object
-	Pos RoomPosition `js:"pos"`
-}
-
 // RoomPosition is an object representing the specified position in the room.
 type RoomPosition struct {
 	*js.Object

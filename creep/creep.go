@@ -5,29 +5,29 @@ import (
 
 	"github.com/bill-rich/go-screeps/common"
 	"github.com/bill-rich/go-screeps/constructionsite"
+	"github.com/bill-rich/go-screeps/object"
 	"github.com/bill-rich/go-screeps/resource"
 	"github.com/bill-rich/go-screeps/room"
+	"github.com/bill-rich/go-screeps/source"
 	"github.com/bill-rich/go-screeps/structure"
 )
 
 // Creep is an object representing one of your units.
 type Creep struct {
-	common.Object
+	object.Object
 	common.Storage
-	Effects     []common.Effect `js:"effects"`
-	Room        room.Room       `js:"room"`
-	Body        []string        `js:"body"`
-	Fatigue     int             `js:"fatigue"`
-	Hits        int             `js:"hits"`
-	HitsMax     int             `js:"hitsMax"`
-	ID          string          `js:"id"`
-	Memory      interface{}     `js:"memory"`
-	My          bool            `js:"my"`
-	Name        string          `js:"name"`
-	Owner       common.Owner    `js:"owner"`
-	Saying      string          `js:"saying"`
-	Spawning    bool            `js:"spawning"`
-	TicksToLive int             `js:"ticksToLive"`
+	Room        room.Room    `js:"room"`
+	Body        []string     `js:"body"`
+	Fatigue     int          `js:"fatigue"`
+	Hits        int          `js:"hits"`
+	HitsMax     int          `js:"hitsMax"`
+	Memory      interface{}  `js:"memory"`
+	My          bool         `js:"my"`
+	Name        string       `js:"name"`
+	Owner       common.Owner `js:"owner"`
+	Saying      string       `js:"saying"`
+	Spawning    bool         `js:"spawning"`
+	TicksToLive int          `js:"ticksToLive"`
 }
 
 // Attack another creep, power creep, or structure in a short-ranged attack.
@@ -78,7 +78,7 @@ func (c Creep) GetActiveBodyParts(bodyType string) int {
 }
 
 // Harvest energy from the source or resources from minerals and deposits.
-func (c Creep) Harvest(target room.Source) error {
+func (c Creep) Harvest(target source.Source) error {
 	return common.ErrT(c.Call("harvest", target).Int())
 }
 
@@ -102,7 +102,7 @@ func (c Creep) MoveByPath(path []common.RoomPosition) error {
 
 // MoveTo finds the optimal path to the target within the same room and move
 // to it.
-func (c Creep) MoveTo(target common.Object) error {
+func (c Creep) MoveTo(target object.Object) error {
 	return common.ErrT(c.Call("moveTo", target).Int())
 }
 
