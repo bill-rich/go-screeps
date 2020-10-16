@@ -53,8 +53,9 @@ func GetGame() Game {
 }
 
 // GetObjectByID gets an object with the specified unique ID.
-func (g Game) GetObjectByID(id string) interface{} {
-	return g.Call("getObjectById", id).Interface()
+//func (g Game) GetObjectByID(id string) interface{} {
+func (g Game) GetObjectByID(id string) *js.Object {
+	return g.Call("getObjectById", id)
 }
 
 // Notify sends a custom message at your profile email.

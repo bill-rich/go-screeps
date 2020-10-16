@@ -4,7 +4,8 @@ package common
 // see: https://docs.screeps.com/api.
 
 import (
-	"fmt"
+	"errors"
+	"strconv"
 
 	"github.com/bill-rich/go-screeps/constants"
 	"github.com/gopherjs/gopherjs/js"
@@ -89,8 +90,8 @@ func ErrT(errCode int) error {
 	}
 	for key, value := range constants.ErrorCodes {
 		if value == errCode {
-			return fmt.Errorf(key)
+			return errors.New(key)
 		}
 	}
-	return fmt.Errorf("UNKNOWN_ERROR: %d", errCode)
+	return errors.New("UNKNOWN_ERROR: " + strconv.Itoa(errCode))
 }

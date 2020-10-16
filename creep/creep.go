@@ -1,7 +1,7 @@
 package creep
 
 import (
-	"fmt"
+	"errors"
 
 	"github.com/bill-rich/go-screeps/common"
 	"github.com/bill-rich/go-screeps/constructionsite"
@@ -96,7 +96,7 @@ func (c Creep) Heal(target Creep) error {
 // Move moves the creep one square in the specified direction.
 func (c Creep) Move(direction int) error {
 	if direction < 1 || direction > 8 {
-		return fmt.Errorf("ERR_INVALID_ARGS")
+		return errors.New("ERR_INVALID_ARGS")
 	}
 	return common.ErrT(c.Call("move", direction).Int())
 }

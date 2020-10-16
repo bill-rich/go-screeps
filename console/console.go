@@ -1,8 +1,6 @@
 package console
 
 import (
-	"fmt"
-
 	"github.com/gopherjs/gopherjs/js"
 )
 
@@ -13,7 +11,7 @@ type Console struct {
 
 // Log logs a message to the console.
 func (c Console) Log(messages ...interface{}) {
-	c.Call("log", fmt.Sprintf("%+v\n", messages...))
+	println(messages)
 }
 
 // GetConsole returns the game's console.
