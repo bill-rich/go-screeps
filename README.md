@@ -19,6 +19,22 @@ You'll also need to create a JS file with the following:
 ```
 require('your_converted_js')
 
+Object.defineProperty(StructureController.prototype, 'room', {
+ get: function() {
+     return
+ },
+ enumerable: false,
+ configurable: true
+})
+
+Object.defineProperty(StructureTerminal.prototype, 'room', {
+ get: function() {
+     return
+ },
+ enumerable: false,
+ configurable: true
+})
+
 module.exports.loop = function () {
     global.pathfinder = Pathfinder
     global.game = Game
@@ -27,3 +43,7 @@ module.exports.loop = function () {
     run()
 }
 ```
+
+The two property overrides are required to avoid an infinite loop when
+converting Rooms, StructureContollers, and StructureTerminals because they
+reference each other. eg room.controller.room.controller.room.controller...
