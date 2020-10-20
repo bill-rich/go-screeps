@@ -14,19 +14,19 @@ import (
 // Creep is an object representing one of your units.
 type Creep struct {
 	object.Object
-	common.Storage
-	Room        room.Room    `js:"room"`
-	Body        []string     `js:"body"`
-	Fatigue     int          `js:"fatigue"`
-	Hits        int          `js:"hits"`
-	HitsMax     int          `js:"hitsMax"`
-	Memory      interface{}  `js:"memory"`
-	My          bool         `js:"my"`
-	Name        string       `js:"name"`
-	Owner       common.Owner `js:"owner"`
-	Saying      string       `js:"saying"`
-	Spawning    bool         `js:"spawning"`
-	TicksToLive int          `js:"ticksToLive"`
+	Store       common.Store           `js:"store"`
+	Room        room.Room              `js:"room"`
+	Body        []string               `js:"body"`
+	Fatigue     int                    `js:"fatigue"`
+	Hits        int                    `js:"hits"`
+	HitsMax     int                    `js:"hitsMax"`
+	Memory      map[string]interface{} `js:"memory"`
+	My          bool                   `js:"my"`
+	Name        string                 `js:"name"`
+	Owner       common.Owner           `js:"owner"`
+	Saying      string                 `js:"saying"`
+	Spawning    bool                   `js:"spawning"`
+	TicksToLive int                    `js:"ticksToLive"`
 }
 
 // StructureInterface is a bit of a hack to get around an import cycle.
@@ -174,7 +174,7 @@ func (c Creep) Suicide() error {
 }
 
 // Transfer resource from the creep to another object.
-func (c Creep) Transfer(target common.Storage, resourceType string, amount int) error {
+func (c Creep) Transfer(target common.Store, resourceType string, amount int) error {
 	return common.ErrT(c.Call("pickup", target, resourceType, amount).Int())
 }
 
@@ -185,6 +185,6 @@ func (c Creep) UpgradeController(target StructureInterface) error {
 }
 
 // Withdraw resources from a structure or tombstone.
-func (c Creep) Withdraw(target common.Storage, resourceType string, amount int) error {
+func (c Creep) Withdraw(target common.Store, resourceType string, amount int) error {
 	return common.ErrT(c.Call("withdraw", target, resourceType, amount).Int())
 }
