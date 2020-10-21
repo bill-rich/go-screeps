@@ -30,14 +30,6 @@ type Effect struct {
 	TicksRemaining int `js:"ticksRemaining"`
 }
 
-// RoomPosition is an object representing the specified position in the room.
-type RoomPosition struct {
-	*js.Object
-	X        int    `js:"x"`
-	Y        int    `js:"y"`
-	RoomName string `js:"roomName"`
-}
-
 // Owner is an object with the creep’s owner info.
 type Owner struct {
 	*js.Object

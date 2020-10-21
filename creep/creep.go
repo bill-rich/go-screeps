@@ -8,6 +8,7 @@ import (
 	"github.com/bill-rich/go-screeps/object"
 	"github.com/bill-rich/go-screeps/resource"
 	"github.com/bill-rich/go-screeps/room"
+	"github.com/bill-rich/go-screeps/roomposition"
 	"github.com/bill-rich/go-screeps/source"
 )
 
@@ -102,13 +103,13 @@ func (c Creep) Move(direction int) error {
 }
 
 // MoveByPath moves the creep using the specified predefined path.
-func (c Creep) MoveByPath(path []common.RoomPosition) error {
+func (c Creep) MoveByPath(path []roomposition.RoomPosition) error {
 	return common.ErrT(c.Call("moveByPath", path).Int())
 }
 
 // MoveTo finds the optimal path to the target within the same room and move
 // to it.
-func (c Creep) MoveTo(target common.RoomPosition) error {
+func (c Creep) MoveTo(target roomposition.RoomPosition) error {
 	return common.ErrT(c.Call("moveTo", target).Int())
 }
 

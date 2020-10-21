@@ -3,6 +3,7 @@ package flag
 import (
 	"github.com/bill-rich/go-screeps/common"
 	"github.com/bill-rich/go-screeps/room"
+	"github.com/bill-rich/go-screeps/roomposition"
 )
 
 // Flag can be used to mark particular spots in a room.
@@ -30,6 +31,6 @@ func (f Flag) SetColor(color, secondary int) error {
 }
 
 // SetPosition sets a new position of the flag.
-func (f Flag) SetPosition(pos common.RoomPosition) error {
+func (f Flag) SetPosition(pos roomposition.RoomPosition) error {
 	return common.ErrT(f.Call("setPosition", pos).Int())
 }

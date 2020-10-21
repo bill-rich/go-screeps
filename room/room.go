@@ -2,6 +2,7 @@ package room
 
 import (
 	"github.com/bill-rich/go-screeps/common"
+	"github.com/bill-rich/go-screeps/roomposition"
 	"github.com/gopherjs/gopherjs/js"
 )
 
@@ -50,24 +51,24 @@ func (t Terrain) Get(x, y int) int {
 
 // SerializePath serializes a path array into a short string representation,
 // which is suitable to store in memory.
-func (r Room) SerializePath(path []common.RoomPosition) string {
+func (r Room) SerializePath(path []roomposition.RoomPosition) string {
 	return r.Call("serializePath", path).String()
 }
 
 // DeserializePath deserializes a short string path representation into an array
 // form.
-func (r Room) DeserializePath(path string) []common.RoomPosition {
-	return r.Call("deserializePath", path).Interface().([]common.RoomPosition)
+func (r Room) DeserializePath(path string) []roomposition.RoomPosition {
+	return r.Call("deserializePath", path).Interface().([]roomposition.RoomPosition)
 }
 
 // CreateContstructionSite creates new ConstructionSite at the specified
 // location.
-func (r Room) CreateContstructionSite(pos common.RoomPosition, structureType string, name string) error {
+func (r Room) CreateContstructionSite(pos roomposition.RoomPosition, structureType string, name string) error {
 	return common.ErrT(r.Call("createConstructionSite", pos, structureType, name).Int())
 }
 
 // CreateFlag creates new Flag at the specified location.
-func (r Room) CreateFlag(pos common.RoomPosition, name string, color string, secondary string) error {
+func (r Room) CreateFlag(pos roomposition.RoomPosition, name string, color string, secondary string) error {
 	return common.ErrT(r.Call("createFlag", pos, name, color, secondary).Int())
 }
 
@@ -83,7 +84,7 @@ func (r Room) FindExitTo(room Room) int {
 
 // FindPath finds an optimal path inside the room between fromPos and toPos
 // using Jump Point Search algorithm.
-func (r Room) FindPath(fromPos, toPos common.RoomPosition, opts string) []common.PathOp {
+func (r Room) FindPath(fromPos, toPos roomposition.RoomPosition, opts string) []common.PathOp {
 	return r.Call("findPath", fromPos, toPos, opts).Interface().([]common.PathOp)
 }
 
@@ -94,8 +95,8 @@ func (r Room) GetEventLog(raw bool) []Event {
 }
 
 // GetPositionAt creates a RoomPosition object at the specified location.
-func (r Room) GetPositionAt(x, y int) common.RoomPosition {
-	return common.RoomPosition{Object: r.Call("getPositionAt", x, y)}
+func (r Room) GetPositionAt(x, y int) roomposition.RoomPosition {
+	return roomposition.RoomPosition{Object: r.Call("getPositionAt", x, y)}
 }
 
 // GetTerrain gets a Terrain object which provides fast access to static terrain

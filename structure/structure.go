@@ -5,6 +5,7 @@ import (
 	"github.com/bill-rich/go-screeps/creep"
 	"github.com/bill-rich/go-screeps/object"
 	"github.com/bill-rich/go-screeps/room"
+	"github.com/bill-rich/go-screeps/roomposition"
 )
 
 // Structure is the base prototype object of all structures.
@@ -118,7 +119,7 @@ func (l Link) TransferEnergy(target Link, amount int) error {
 }
 
 // LaunchNuke launches a nuke to the specified position.
-func (l Link) LaunchNuke(pos common.RoomPosition) error {
+func (l Link) LaunchNuke(pos roomposition.RoomPosition) error {
 	return common.ErrT(l.Call("launchNuke", pos).Int())
 }
 
@@ -163,6 +164,6 @@ func (s Structure) NotifyWhenAttacked(enabled common.Enabled) bool {
 }
 
 // SpawnCreep spawns a creep.
-func (s Spawn) SpawnCreep(body []string, name string) error {
+func (s Spawn) SpawnCreep(body []string, name string, args ...string) error {
 	return common.ErrT(s.Call("spawnCreep", body, name).Int())
 }
